@@ -1,0 +1,50 @@
+# Local development compose — injects fake Authelia headers via nginx proxy
+# Usage: podman compose up
+# Access: http://localhost:8080
+#
+# Customize the fake user identity:
+#   FAKE_REMOTE_USER=alice podman compose up
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    restart: unless-stopped
+    environment:
+      HEADER_USER: Remote-User
+      HEADER_NAME: Remote-Name
+      HEADER_EMAIL: Remote-Email
+      HEADER_GROUPS: Remote-Groups
+      GROUPS_SEPARATOR: ","
+      GROUPS_LOWERCASE: "true"
+    expose:
+      - "8080"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    restart: unless-stopped
+    # catalog.json volume-mounted so you can edit it without rebuilding
+    volumes:
+      - ./frontend/public/catalog.json:/usr/share/nginx/html/catalog.json:ro
+    expose:
+      - "8080"
+
+  proxy:
+    image: docker.io/nginxinc/nginx-unprivileged:alpine
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/templates/default.conf.template:ro
+    environment:
+      FAKE_REMOTE_USER:   ${FAKE_REMOTE_USER:-alice}
+      FAKE_REMOTE_NAME:   ${FAKE_REMOTE_NAME:-Alice Doe}
+      FAKE_REMOTE_EMAIL:  ${FAKE_REMOTE_EMAIL:-alice@aubinina.eu}
+      FAKE_REMOTE_GROUPS: ${FAKE_REMOTE_GROUPS:-family}
+      NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx/conf.d
+    depends_on:
+      - backend
+      - frontend
