@@ -1,0 +1,24 @@
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/*.egg-info/
+backend/.pytest_cache/
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+.ruff_cache/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.svelte-kit/
+
+# Editor / OS
+.DS_Store
+.env
+.env.*
+!.env.example
+*.swp
+*.swo
+.idea/
+.vscode/
