@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#4CAF50"/>
+  <!-- Album stack -->
+  <rect x="20" y="30" width="60" height="44" rx="5" fill="white" opacity="0.25"/>
+  <rect x="16" y="26" width="60" height="44" rx="5" fill="white" opacity="0.35"/>
+  <!-- Main photo frame -->
+  <rect x="12" y="22" width="60" height="44" rx="5" fill="white"/>
+  <!-- Sky -->
+  <rect x="12" y="22" width="60" height="22" rx="5" fill="#81C784"/>
+  <rect x="12" y="34" width="60" height="10" fill="#81C784"/>
+  <!-- Sun -->
+  <circle cx="52" cy="32" r="6" fill="#FDD835"/>
+  <!-- Mountains -->
+  <polygon points="12,66 30,42 48,66" fill="#388E3C"/>
+  <polygon points="32,66 52,46 72,66" fill="#2E7D32"/>
+  <!-- Ground -->
+  <rect x="12" y="60" width="60" height="6" rx="0" fill="#A5D6A7"/>
+</svg>

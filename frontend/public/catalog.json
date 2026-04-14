@@ -1,0 +1,28 @@
+{
+  "apps": [
+    {
+      "id": "immich",
+      "name": "Gallery",
+      "description": "Photo & video management",
+      "url": "https://gallery.aubinina.eu",
+      "icon": "/icons/immich.svg",
+      "groups": []
+    },
+    {
+      "id": "nextcloud",
+      "name": "Nextcloud",
+      "description": "Files",
+      "url": "https://nextcloud.aubinina.eu",
+      "icon": "/icons/nextcloud.svg",
+      "groups": []
+    },
+    {
+      "id": "bitwarden",
+      "name": "Bitwarden",
+      "description": "Password manager",
+      "url": "https://bitwarden.lambare.fr",
+      "icon": "/icons/bitwarden.svg",
+      "groups": ["family"]
+    }
+  ]
+}
